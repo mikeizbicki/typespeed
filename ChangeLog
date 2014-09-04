@@ -1,0 +1,278 @@
+v0.6.5	- The reallocation of memory for wordlists containing more than 1024
+	  words is wrong, leading to segmentation fault.
+	  Spotted by Thierry Daucor.
+	- If two wordlists have the same description, displayed error
+	  message is not as helpful as supposed, spotted by Thierry Daucour.
+	- Adjust typespeed.SlackBuild to be a conform shell script, patch
+	  by Lars Nordlund.
+	- You can specify how to order high score list in configuration file.
+	  Requested by many.
+	- Include stdarg.h where needed (and if it's available).  Spotted by
+	  Hernani Marques Madeira.
+	- As discussed with Richard Black, if you were about to type
+	  a word correctly when the missed word limit is reached, don't
+	  count it as a typo -- instead, add the written chars to your score.
+v0.6.4	- Do not hardwire localedir in src/Makefile.am, spotted by
+	  Charles Clément.
+	- A default rule set can be supplied in configuration file.
+	- Fix possible segmentation fault if opponent in network play
+	  doesn't write anything (division by zero).
+	- Don't be so harsh about people with low typing skills:
+	  Loser -> Beginner, ADP-Pro -> Learner
+	- Status bar can be adjusted by locales.
+	- Removed some probably offending words from words.eng.
+	- Dropped min10 (cpm, i.e. cps * 60).
+	- Replaced tcps with wpm, although it's just cps * 12.
+	- Regine Müller spotted a serious typo in high score menu (de_DE).
+v0.6.3	- New menu translations:
+	  - fr_FR by Charles Clément and Sysyphe GEP
+	  - it by Lapo Luchini
+	- Typos fixed in french word list, patch by Charles Clément.
+	- autotools problems fixed on Cygwin, spotted by Lapo Luchini.
+	- Zap the silly dependency of m4 I introduced with 0.6.1.
+	- Properly reset terminal if it is too small, patch by Charles Clément.
+	- Fixed possibility to enter name with a blank in front of it,
+	  spotted by vispi.
+	- High score menu is not limited to top 10 anymore.
+	- Fixed possible segfault if path names are too long (> MAXPATHLEN).
+	- Windows code put into source (WIN32).
+	- Wordlist/Ruleset menus can be left by pressing Escape.
+	- All parameters supplied to typespeed not in getopt result in
+	  usage.
+	- Major network code improvements/bugfixes:
+	  * closed file descriptor leakage in server code
+	  * multiple network games per running session possible
+	  * new function called gprint used in network code (better readable)
+	  * check return value of ioctl (non-blocking mode OK?)
+	  * you can abort while waiting for connections now
+	  * a player name can be specified
+	  * thin client support, i.e. retrieving word lists from a server
+	  * new option --netlog=file logs network traffic; for debugging
+### Typespeed v0.6.3 is NOT network compatible with earlier versions ###
+	  * new network parameters for better comprehension by developer(s) :)
+	  * high score sharing is locale-safe now (1.234 vs. 1,234)
+	  * versions are compared in order to prevent version missmatches
+v0.6.2	- Used random seed will be actualy saved now.
+	- You can feed typespeed with specified random seed.
+	- Fixed bug introduced with 0.6.1: enter/space is no longer
+	  counted as typo if you have entered a correct word.
+	- Do not let other persons flock high score file: this could
+	  result in a denial of service.
+	- Smoothness takes "yes" and "no" as argument.
+	- "No High Scores" will be translated, too.
+	- File selection menu is useable with vi-like key strokes (j, k).
+	- Removed implementation-defined C-code like:
+	     x[i++] = i;
+	- Better testsuite framework support included.
+	- Compilation of test suite on systems without gettext in libc
+	  has been fixed.
+	- Translate title of default rule set if selected.
+	- Fixed buffer underrun in parseline that occured if a line in
+	  configuration file (or game rule file) started with "=".
+	- autotools improvements, spotted by Michael Sterrett:
+	  * handle --docdir properly
+	  * support for different high score dir (--with-highscoredir=DIR)
+	- If working with strings, _always_ terminate with '\0' at end
+	  of buffer, no matter how obvious it is that string fits anyway.
+v0.6.1	- Added copy&paste cheat protection.
+	- Added support for gettext.
+	- SECURITY FIX: make sure privileges have been dropped.
+	- Switched to autoconf and automake.
+	- Typo spotted in french word list by David Jeannot.
+v0.6.0  - Fixed statistics in case typoratio is 100 %.
+	- Do not allow empty names for high score.
+	- typespeed forces use of a terminal for stdout/stderr/stdin now.
+	- Game rules can be changed by user.
+	- setgid() by default - drops privileges as soon as highscore
+	  file has been opened.
+	- major change in highscores:
+	  * switch to csv format
+	  * only one highscore file for all wordlists
+	  * cannot reset highscores anymore
+	  * users can have their own highscore file
+	- Use all available space on screen for words (position 0 not 1).
+	- New testsuite design
+	- wordlists are sorted alphabetically.
+	- scandir replaced with opendir; readdir; closedir.
+	  No more annoying gcc warnings about that on different systems
+	  (like glibc based systems and bsd).
+	- ISO-conform clear sequence (fixes warning),
+	  by Alessandro Massignan.
+	- Fixed bug in function keys.
+	- German words are OK for childrens now.
+	- Two bad words removed from english word list.
+	- Unified wordlist names for languages (iso 639)
+	- New C# wordlists by Nicolai Stoy
+	- Fixed bug in network code: resulted in an endless loop at end
+	  of the game.
+v0.5.3	- Restructure of Makefile, which required some internal changes.
+	  Many thanks for the supplied documentation and raising this
+	  issue go to Andrew Ziem.
+v0.5.2	- Words are case-sensitive now.
+	- Do not throw user out of wordlist selection on error.
+	- Do not use uninitalized variable (server) in network code.
+	- Fix bug in network menu so alternative ports can be
+	  entered instead of overwriting server name.
+### Typespeed v0.5.2 is NOT network compatible with earlier versions ###
+	- Various network improvements, including:
+	  * netwait() cannot end in denial of service anymore
+	  * do not allow non-printable words by opponent
+	  * do not use acceptable words for network control
+	- Create required directories during installation, spotted by
+	  Alessandro Massignan.
+	- Fix memory management in multiplayer menu.
+	- Fix memory management in addtop10.
+	- Better handling of error messages.
+v0.5.1	- Fixed off-by-ones
+	- Paths for wordfiles and highscorefiles are separated now.
+	- Missing include in misc.c, spotted by Mike Frysinger.
+	- err where possible instead of fprintf/exit or perror/exit.
+v0.5.0	- Cheat mode more reliable now.
+	- Don't trick users into believing that training is possible
+	  during network play.
+	- Fixed pause mode.
+	- Max word length is 19 chars (look at input field).
+	- Prevent escaped inputs, would result in strange output.
+	- Cursor won't jump into right corner anymore.
+	- Prevent unwanted behaviour when a list only contains
+	  duplicated words, spotted by Marcel Jovic.
+	- Changed highscore file format,
+	   added utility to convert old highscore files.
+	- Fixed wrong usage of free in wordlist handling.
+	- Fixed segfaults in parsing of wordlist ...
+	  ... when wordlist does not contain enough words.
+	  ... when wordlist does not start with "words." (words was enough).
+	- Nicer output
+	- New thai wordlist by Theppitak Karoonboonyanan
+	- Fixed segfault when no wordlists are found, spotted by Gabriele Piga.
+	- Some bugfixes in network code and nul terminating buf
+	  by Andreas Pickart.
+	- Better locale support by Theppitak Karoonboonyanan.
+	- Fixed segfault when HOME is not set, patch by Niko Tyni.
+	- Applied fix by Debian Security Team.
+	- Fixed possible file handle overflow.
+	- New testsuite
+	- New french wordlist by Francois Wendling
+	- New italian wordlist by Lapo Luchini
+	- Improved german wordlist by Dr. Olaf Foellinger
+	- New german wordlist by Raphael Studer
+	- New maintainer: Tobias Stoeckmann <tobias@bugol.de>
+v0.4.4  - Fixed buffer overflow in network code by Debian Security Team,
+	  because their fix was the same as I was thinking but I hadn't
+	  the time to verify that it will surely fix it.
+	- Fixed timing bug in Sparc64 by Elie De Brauwer.
+	- Fixed typo "looser" vs "loser" by William Lindley.
+	- Fixed crash when wordfile had more than WORD_MAX words.
+	- From debian patchfile:
+	   * Did s/char merkk/int merkk/ in file.c
+	   * Added words.dut by Wouter de Vries
+	- New email address for me.
+v0.4.3  - Fixed stupid buffer overflow which allowed users get games gid in
+          installation. Report by: jaguar
+v0.4.2	- fixed a SIGSEGV bug (wrong variable in for loop)
+	- added spanish wordlist thanks Xploit
+	- email address changes:)
+v0.4.1  - fixed a off-by-one buffer overflow in network code
+	- development is slow, we're so busy. finnish army and etc...
+        - fixed one possible segfault
+	- added portuguese wordfile thanks to: 
+	        Fabricio <fmatheus@sourceforge.net>
+	        Everton <evertonm@sourceforge.net>
+	- when writing words added kind of emacs like features to
+	  ^B ^A ^K ^F ^E..and ^U to del the whole line.
+          idea from eddy.
+
+v0.4.0  - fixed a couple of (what is the null char? :) errors.
+	  thanks to Andreas Ehliar <ehliar@lysator.liu.se> for pointing them
+	- makefile changes: fixed make install, added uninstall alias to
+	  distclean, added removing /etc/typespeedrc and high scorefiles
+	  in the current typespeed directory to distclean  
+	- made --makescores parameter to make/reset scorefiles for the
+          wordfiles found in the dir in the configs or in if no config
+          files exists, then in the current dir.
+	- localconfig gets readed from $HOME/LOCALCONF
+	### big pause in any coding of typespeed but we tought we make
+        ### it better and release then, but then our innovation collapsed
+        ### and we did nothing.. so we have to release this 0.4.0 version :)
+        - pause don't work in multiplayer
+	- fixed getting XMunkki typeratio if you had typeratio
+	  which went just trought our ratiomachine (ex. 50..)
+	- splitted code to couple files
+	- made support for over 16 wordfiles and better wordfile choose
+	  method, imho
+	- added reset scofile(s) to the Options menu
+*************************************************************************
+*************************************************************************
+********- new speed method (not compatible with ztspeed anymore)*********
+*************************************************************************
+*************************************************************************
+	- added netword support(some kind of) thanks to: 
+	  Steinar H. Gunderson <sgunderson@bigfoot.com>
+	  for the basic patch, made our work easier :)
+	  but this has to be buggy and so on.. :)
+	- made our mvgetnstr ignore escape codes.
+	- fixed a way to cheat (just write same word until a new word
+	  comes to the line where the word were)
+	- now were using GNU getopt (thanks again Steinar)
+
+v0.3.5  - made Options menu, can change color,cheat,training,training speed
+	- you can adjust the speed of training mode by examp. --training 4 
+	- config files didn't work (sometime should make also ~/.config :)
+	- now you can pause the game with F1
+	- fixed coredump in choose_wordfile if more than 16 wordfiles
+	- added typorank, like your rank (3l33t,god...)
+	- new rank "Computer", if you got over 900 points..
+	- you did get one point too much when you pressed space/enter
+	- training mode, 2 times slower than normal mode, but you cannot
+	  get to top10 with this mode. param: -tra or --training
+	- tells if you are using cheat or training mode in "status bar"
+	- rank was always blue, after game.
+	- removed "offensive and objectionable" words
+	- corrected some typos
+	- better(?) wordlists
+	- fixed little mistake(?) - now you can be a *GOD* :)
+
+v0.3.4  - better random r()
+	- words changes colors..
+	- added.. um, i can't say what, figure it out :D
+	- localconfig file.. .typespeedrc
+	  for telling which dir has word/score files. if not in currentdir
+	  (NOTE: .typespeedrc not ~/.typespeedrc)
+	- some misc little changes
+
+v0.3.3  - mvgetnstr() -> to own function by jaakko
+          he didn't have it in ncurses so...
+	- fixed addtop10
+	- space does the same as enter in words writing
+
+v0.3.2  - bugbugfixes.. coredump with glicb2.1 and not working with
+          alpha or something fixes by amn
+
+v0.3.1  - little-big-bugfix.
+	- fixed total cps increasement when playing more than one time=)
+	  
+v0.3 "we want statistics" release:
+   
+	- now you need to get 1 point more than old list entrys
+	  to get into the top10. and if there are 2 or more same
+	  scores newest will be the lowest in top10.
+        - added total cps and typo ratio
+	- 10min speed came back, but only in after game statistics.
+
+v0.2 First public release:
+
+	- added make install + source modifications to make
+	  whole system use samewordsfiles / highscores
+	- background should be black even if xterm etc has other color.
+	- added command line parametres: --help / --nocolor
+
+v0.1 first version to friends:
+
+	- esc stops game
+	- added top10 lists
+	- added colors
+	- added check for same words
+	- changed 10min speed estimate to CPS
+
+	+ all other basic stuff
+

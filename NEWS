@@ -1,0 +1,68 @@
+typespeed v0.6.5
+
+- A memory management bug has been fixed which resulted in a segmentation
+  fault if a wordlist with more than 1024 words has been selected.
+- The order of high score entries can be specified in configuration file,
+  so you can decide if correctness is more important than speed etc.
+- With this version, you are able to reach 0 % typo ratio even if you were
+  not able to complete your last word before game end.
+
+typespeed v0.6.4
+
+- A division by zero bug has been fixed in network code.  This one could
+  occure with specialy crafted packets, so normal game play was not
+  affected.  No security problem, just a reliability fix.
+- Words per minute have been added, tCPS have been dropped.  You can
+  still calculate tCPS on your own, high score file format is specified
+  in README.
+
+typespeed v0.6.3
+
+- Major improvements in network code. This was _realy_ necessary for a
+  long time, I think this code should work.  Maybe there are some little
+  glitches in it, but the core logic is much simpler, saner, and more
+  stable than in 0.6.2 and before. To make debugging even simpler, a
+  new option called "--netlog=file" has been added: it writes all data
+  read/sent through network into that file.  Yes, typespeed's network
+  code is _that_ simple. :)
+- Menus can be left with Escape now. Lack of this "feature" was not
+  acceptable anymore.
+- On multi user systems it might have been quite annoying to never see
+  the personal record on top10, just because people were better.  Now it
+  is possible to scroll through high score list.
+
+typespeed v0.6.2
+
+- Many many bug fixes have been made, most of these bugs have been
+  introduced with 0.6.1. If you don't have any good reason to stick at
+  0.6.1, please upgrade!  Perhaps you have an even older version: in that
+  case, upgrade too. :)
+- You can change directory for typespeed's documents (README) with --docdir.
+- If you don't like to have typespeed's system wide high score file under
+  localstatedir/games, you can change this during configure:
+    --with-highscoredir=DIR
+
+typespeed v0.6.1
+
+- Finally the switch to autotools happened. And this definitely had to
+  be done for nifty cool things like gettext and proper drop of
+  privileges.
+- Support for gettext has been included. If you would like to see
+  typespeed in your (currently not supported) preferred language, put
+  your hands on po/typespeed.pot and mail your new translations.
+- Anticheat measurements are added to typespeed. On some systems it was
+  very easy to copy whole screen and pasting it. Now you will lose
+  immediately all your points as you deserve it - cheater! :)
+
+typespeed v0.6.0
+
+- A new mechanism for game rules has been integrated. With these
+  game rules, you can change the way typespeed works.
+- The high score file format has yet changed again: this time a
+  csv format is in use. Also there is only one huge file that contains
+  all game results (not just top 10). Especially usefull if you want
+  to create statistics about your improvements. :)
+- The binary is setgid games now, but drops privileges as soon as
+  high score file is opened. With this step, there is no need any longer
+  to create world writeable high score files.
+

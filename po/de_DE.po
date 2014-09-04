@@ -1,0 +1,490 @@
+# German messages for typespeed.
+# Copyright (C) 1999-2003   Jani Ollikainen  <bestis@iki.fi>
+#                         & Jaakko Manelius  <jman@iki.fi>
+# Copyright (C) 2006-2008   Tobias Stoeckmann  <tobias@bugol.de>
+# This file is distributed under the same license as the typespeed package.
+# Tobias Stoeckmann <tobias@bugol.de>, 2007.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: typespeed 0.6.5\n"
+"Report-Msgid-Bugs-To: tobias@bugol.de\n"
+"POT-Creation-Date: 2008-08-13 16:30+0200\n"
+"PO-Revision-Date: 2007-09-29 11:08+0200\n"
+"Last-Translator: Tobias Stoeckmann <tobias@bugol.de>\n"
+"Language-Team: German <tobias@bugol.de>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: src/file.c:167 src/file.c:168
+msgid "Enter your name:"
+msgstr "Bitte Namen eingeben:"
+
+#: src/file.c:227 src/typespeed.c:290
+msgid "default"
+msgstr "Standard"
+
+#: src/file.c:233
+msgid "No rule sets found..."
+msgstr "Keine Regelsätze gefunden"
+
+#: src/file.c:240
+msgid "rule set"
+msgstr "Regelsatz"
+
+#: src/file.c:285 src/menu.c:409
+msgid "No word lists found..."
+msgstr "Keine Wörterlisten gefunden"
+
+#: src/file.c:293
+msgid "word list"
+msgstr "Wörterliste"
+
+#: src/file.c:319
+msgid "Path to file is too long."
+msgstr "Dateipfad ist zu lang."
+
+#: src/file.c:325
+msgid "Not enough words in word list for current settings."
+msgstr "Für aktuelle Einstellungen sind zu wenig Wörter in der Liste."
+
+#: src/file.c:328
+msgid "Cannot write to high score file."
+msgstr "Kann den Punktestand nicht abspeichern."
+
+#: src/file.c:331
+msgid "Something went wrong. Contact your mother."
+msgstr "Irgendwas lief schief, frag bei deiner Mutter nach."
+
+#: src/file.c:810
+msgid "No High Scores"
+msgstr "Keine Highscores"
+
+#: src/file.c:821
+msgid "High Score List"
+msgstr "Highscoreliste"
+
+#: src/file.c:822
+msgid "Use cursor keys to scroll or ESC to leave"
+msgstr "Mit Pfeiltasten navigieren; mit ESC Menü verlassen."
+
+#: src/file.c:824
+msgid ""
+"Rank   (score) (name)                   (level)   (cps)  (wpm)  (typoinfos)"
+msgstr ""
+"Top10  (Punkte)(Name)                   (Level)   (ZPS)  (WPM)  (Typoinfos)"
+
+#: src/menu.c:104
+msgid "1. Test Your Speed"
+msgstr "1. Schreibgeschwindigkeit testen"
+
+#: src/menu.c:106
+msgid "2. Close Connection"
+msgstr "2. Verbindung trennen"
+
+#: src/menu.c:108
+msgid "2. Network Head2Head"
+msgstr "2. Netzwerkspiel"
+
+#: src/menu.c:109
+msgid "3. Story/Credits/RTFM!"
+msgstr "3. Hintergrund"
+
+#: src/menu.c:110
+msgid "4. Show Highscores"
+msgstr "4. Punktestände anzeigen"
+
+#: src/menu.c:111
+msgid "5. Options"
+msgstr "5. Einstellungen"
+
+#: src/menu.c:112
+msgid "6. Game Rules"
+msgstr "6. Spielregeln"
+
+#: src/menu.c:113
+msgid "7. Quit"
+msgstr "7. Beenden"
+
+#: src/menu.c:115 src/menu.c:346 src/menu.c:442 src/menu.c:532
+msgid "Choose: "
+msgstr "Auswahl: "
+
+#: src/menu.c:132 src/typespeed.c:401
+msgid "Rank: %------- Score: %--- WPM: %-- CPS: %---- Misses: %-"
+msgstr "Rang: %------- Punkte: %--- WPM: %-- ZPS:%---- Fehler: %-"
+
+#: src/menu.c:182
+#, c-format
+msgid "Choose a %s (UP/DOWN/ENTER):"
+msgstr "Wähle %s (HOCH/RUNTER/ENTER):"
+
+#: src/menu.c:337
+msgid "1. Server"
+msgstr "1. Server"
+
+#: src/menu.c:338
+msgid "2. Client"
+msgstr "2. Client"
+
+#: src/menu.c:339
+msgid "3. Port"
+msgstr "3. Port"
+
+#: src/menu.c:340
+msgid "4. Player Name"
+msgstr "4. Spielername"
+
+#: src/menu.c:341
+msgid "5. Return"
+msgstr "5. Zurück"
+
+#: src/menu.c:354 src/menu.c:356
+msgid "Enter Host:"
+msgstr "Host eingeben:"
+
+#: src/menu.c:362 src/menu.c:363
+msgid "Enter Port:"
+msgstr "Port eingeben:"
+
+#: src/menu.c:372 src/menu.c:374
+msgid "Enter Name:"
+msgstr "Bitte Namen eingeben:"
+
+#: src/menu.c:392
+msgid "When you get connect, choose a word list and"
+msgstr "Wenn eine Verbindung aufgebaute wurde, wähle eine"
+
+#: src/menu.c:393
+msgid "then wait for the game start. The game starts as"
+msgstr "Wortliste aus und warte, bis der Gegenspieler"
+
+#: src/menu.c:394
+msgid "soon as the other player has chosen a word list."
+msgstr "ebenfalls eine Wortliste ausgewählt hat."
+
+#: src/menu.c:425
+msgid "1. Colors"
+msgstr "1. Farben"
+
+#: src/menu.c:426
+msgid "2. Cheat"
+msgstr "2. Schummeln"
+
+#: src/menu.c:427
+msgid "3. Return"
+msgstr "3. Zurück"
+
+#: src/menu.c:431 src/menu.c:433
+msgid "ON"
+msgstr "AN"
+
+#: src/menu.c:437 src/menu.c:439
+msgid "OFF"
+msgstr "AUS"
+
+#: src/menu.c:465
+msgid "Press any key to continue..."
+msgstr "Beliebige Taste drücken, um fortzufahren ..."
+
+#: src/menu.c:482 src/menu.c:498
+msgid "Current Rule Set:"
+msgstr "Aktuelle Spielregel:"
+
+#: src/menu.c:484
+msgid "1. Load Another Rule Set"
+msgstr "1. Andere Spielregel laden"
+
+#: src/menu.c:485 src/menu.c:500
+msgid "2. Misses Limit:"
+msgstr "2. Höchste Fehleranzahl:"
+
+#: src/menu.c:486 src/menu.c:502 src/menu.c:504
+msgid "3. Word Length:"
+msgstr "3. Wortlänge:"
+
+#: src/menu.c:488 src/menu.c:506 src/menu.c:508
+msgid "4. Words On Screen:"
+msgstr "4. Angezeigte Wörter:"
+
+#: src/menu.c:490 src/menu.c:511 src/menu.c:514
+msgid "   High Score Enabled:"
+msgstr "   Punktestand speichern:"
+
+#: src/menu.c:491 src/menu.c:516
+msgid "6. Speed Step:"
+msgstr "6. Geschwindigkeitszunahme:"
+
+#: src/menu.c:492 src/menu.c:518 src/menu.c:521 src/menu.c:524
+msgid "7. Speed Range:"
+msgstr "7. Geschwindigkeit:"
+
+#: src/menu.c:494 src/menu.c:527 src/menu.c:530
+msgid "8. Smoothness:"
+msgstr "8. Ruckelfrei:"
+
+#: src/menu.c:495
+msgid "9. Return"
+msgstr "9. Zurück"
+
+#: src/menu.c:512 src/menu.c:528
+msgid "yes"
+msgstr "ja"
+
+#: src/menu.c:515 src/menu.c:530
+msgid "no"
+msgstr "nein"
+
+#: src/menu.c:525
+msgid "0 (unlimited)"
+msgstr "0 (unbegrenzt)"
+
+#: src/menu.c:539
+msgid "Misses Limit:"
+msgstr "Höchste Fehlerzahl:"
+
+#: src/menu.c:543
+msgid "Min Length:"
+msgstr "Mindestlänge:"
+
+#: src/menu.c:545
+msgid "Max Length:"
+msgstr "Höchstlänge:"
+
+#: src/menu.c:551
+msgid "Min Words:"
+msgstr "min. Wörter:"
+
+#: src/menu.c:553
+msgid "Max Words:"
+msgstr "max. Wörter:"
+
+#: src/menu.c:559
+msgid "Speed Step:"
+msgstr "Geschwindigkeitszunahme:"
+
+#: src/menu.c:563
+msgid "Min Speed:"
+msgstr "Mindestgeschwindigkeit:"
+
+#: src/menu.c:565
+msgid "Max Speed:"
+msgstr "Höchstgeschwindigkeit:"
+
+#: src/menu.c:595
+msgid "Typespeed is made by  Jani Ollikainen  <bestis@iki.fi>"
+msgstr "Typespeed wurde entwickelt von Jani Ollikainen  <bestis@iki.fi>"
+
+#: src/menu.c:597
+msgid "                    & Jaakko Manelius  <jman@iki.fi>"
+msgstr "                            u. Jaakko Manelius  <jman@iki.fi>"
+
+#: src/menu.c:599
+msgid "Current maintainer is Tobias Stoeckmann  <tobias@bugol.de>"
+msgstr "Momentaner Projektbetreuer ist Tobias Stöckmann <tobias@bugol.de>"
+
+#: src/menu.c:602
+msgid "Typespeed's idea is ripped from ztspeed (a dos game made"
+msgstr "Typespeeds Idee stammt von ztspeed (einem von Zorlim entwickelten"
+
+#: src/menu.c:604
+msgid "by Zorlim). Typespeed doesn't give scores that can be"
+msgstr "DOS-Spiel). Typespeeds Punktestände können aber nicht länger"
+
+#: src/menu.c:606
+msgid "compared with ztspeed anymore. We wanted to use our way."
+msgstr "mit denen von ztspeed verglichen werden."
+
+#: src/menu.c:608
+msgid "Idea of the game should be clear to anyone, just type and"
+msgstr "Idee des Spiels ist einfach: Schreib so schnell du kannst"
+
+#: src/menu.c:610
+msgid "type it fast, or be a lewser."
+msgstr "oder verliere."
+
+#: src/menu.c:612
+msgid "Bugs/Ideas/Comments to <tobias@bugol.de>"
+msgstr "Fehler/Ideen/Kommentare an <tobias@bugol.de>"
+
+#: src/misc.c:134
+msgid "You need at least 80 x 24 terminal!"
+msgstr "Dein Terminal muss mindestens 80 x 24 Zeichen unterstützen!"
+
+#: src/network.c:275
+#, c-format
+msgid "Looking up %s...\n"
+msgstr "%s auflösen ...\n"
+
+#: src/network.c:278
+#, c-format
+msgid "Cannot lookup %s\n"
+msgstr "Kann %s nicht auflösen.\n"
+
+#: src/network.c:288
+msgid "Connecting to typespeed server at "
+msgstr "Verbinde mit typespeed-Server unter "
+
+#: src/network.c:289
+#, c-format
+msgid "%s (port %d)...\n"
+msgstr "%s (Port %d) ...\n"
+
+#: src/network.c:294
+msgid "Cannot connect"
+msgstr "Kann keine Verbindung aufbauen."
+
+#: src/network.c:333
+msgid "Waiting for connections...\n"
+msgstr "Warte auf Verbindungen ...\n"
+
+#: src/network.c:392
+msgid "Waiting for other party to identify...\n"
+msgstr "Warte auf Identifikation des Gegenspielers ...\n"
+
+#: src/network.c:405
+#, c-format
+msgid "Remote is: %s\n"
+msgstr "Gegenspieler verwendet: %s\n"
+
+#: src/network.c:407
+msgid "Version missmatch\n"
+msgstr "Versionsunterschied\n"
+
+#: src/network.c:420
+msgid "Remote is not typespeed\n"
+msgstr "Gegenspieler verwendet kein typespeed.\n"
+
+#: src/typespeed.c:394
+#, c-format
+msgid ""
+"Typespeed %s, Copyright (C) Jani Ollikainen & Jaakko Manelius\n"
+"                  Copyright (C) Tobias Stoeckmann\n"
+"Typespeed comes with ABSOLUTELY NO WARRANTY; for details read COPYING.\n"
+msgstr ""
+"Typespeed %s, Copyright (C) Jani Ollikainen u. Jaakko Manelius\n"
+"                  Copyright (C) Tobias Stoeckmann\n"
+"Es gibt KEINERLEI GARANTIE, so weit das Gesetz es erlaubt.\n"
+
+#: src/typespeed.c:528
+#, c-format
+msgid ""
+"Typespeed %s\n"
+"\n"
+"Best score was:\n"
+"\n"
+"Rank:\t\t%s\n"
+"Score:\t\t%u\n"
+"WPM:\t\t%u\n"
+"CPS:\t\t%2.3f\n"
+"Typo ratio:\t%2.1f%%\n"
+"Typorank:\t"
+msgstr ""
+"Typespeed %s\n"
+"\n"
+"Beste Punktezahl war:\n"
+"\n"
+"Rang:\t\t%s\n"
+"Punkte:\t\t%u\n"
+"WPM:\t\t%u\n"
+"ZPS:\t\t%2.3f\n"
+"Fehlerrate:\t%2.1f %%\n"
+"Fehlerrang:\t"
+
+#: src/typespeed.c:657
+msgid "       PAUSED      "
+msgstr "     PAUSIERT      "
+
+#: src/typespeed.c:803
+msgid "Waiting for the other party to join in..."
+msgstr "Warte auf Teilnahme eines Gegenspielers ..."
+
+#: src/typespeed.c:899 src/typespeed.c:925
+msgid "GAME OVER!"
+msgstr "SPIEL VORBEI!"
+
+#: src/typespeed.c:914
+msgid "Retrieving opponent's high score ..."
+msgstr "Empfange Highscore des Gegenspielers ..."
+
+#: src/typespeed.c:930
+msgid "You achieved:"
+msgstr "Dein Punktestand:"
+
+#: src/typespeed.c:932
+msgid "Rank:"
+msgstr "Rang:"
+
+#: src/typespeed.c:933
+#, c-format
+msgid "Score:\t\t%d"
+msgstr "Punkte:\t\t%d"
+
+#: src/typespeed.c:934
+#, c-format
+msgid "WPM:\t\t%lu"
+msgstr "WPM:\t\t%lu"
+
+#: src/typespeed.c:935
+#, c-format
+msgid "CPS:\t\t%2.3f"
+msgstr "ZPS:\t\t%2.3f"
+
+#: src/typespeed.c:936
+#, c-format
+msgid "Typo ratio:\t\t%2.1f%%"
+msgstr "Fehlerrate:\t\t%2.1f %%"
+
+#: src/typespeed.c:937
+msgid "Typorank:"
+msgstr "Fehlerrang:"
+
+#: src/typespeed.c:948
+msgid "Opponent:"
+msgstr "Des Gegners:"
+
+#: src/typespeed.c:958
+#, c-format
+msgid "%2.1f%%"
+msgstr "%2.1f %%"
+
+#: src/typespeed.c:968
+msgid "NETWORK MODE - YOU CANNOT GET TO TOP10"
+msgstr "NETZWERKMODUS - PUNKTE WERDEN NICHT GESPEICHERT"
+
+#: src/typespeed.c:971
+msgid "RANKING DISABLED - YOU CANNOT GET TO TOP10"
+msgstr "RANGLISTE DEAKTIVIERT - PUNKTE WERDEN NICHT GESPEICHERT"
+
+#: src/typespeed.c:995
+#, c-format
+msgid ""
+"\n"
+"command line options:\n"
+"  --cheat       = multimedia cheat(?)\n"
+"  --client=addr = ip address of server\n"
+"  --netlog=file = log network traffic into file\n"
+"  --nocolors    = do not use colors\n"
+"  --port=port   = port number in the network play\n"
+"  --server      = start typespeed in server mode\n"
+"  --help        = this help!\n"
+"\n"
+"usage: %s options\n"
+"\n"
+"typespeed %s - http://tobias.eyedacor.org/typespeed/\n"
+msgstr ""
+"\n"
+"Kommandozeilenoptionen:\n"
+"  --cheat        = schummeln(?)\n"
+"  --client=Addr  = IP-Adresse des Servers\n"
+"  --netlog=Datei = Schreibe Netzwerkdaten in Datei\n"
+"  --nocolors     = keine Farben anzeigen\n"
+"  --port=Port    = Portnummer für das Netzwerkspiel\n"
+"  --server       = typespeed im Servermodus starten\n"
+"  --help         = diese Hilfe!\n"
+"\n"
+"Aufruf: %s Optionen\n"
+"\n"
+"typespeed %s - http://tobias.eyedacor.org/typespeed/\n"

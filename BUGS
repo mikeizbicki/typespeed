@@ -1,0 +1,6 @@
+The screen will be screwed up if you copy&paste words that are not
+displayed properly (i.e. you set your locale but your display cannot
+handle the "symbols").
+
+With some curses implementations, F1-F12, etc. are handled as ESC, so
+these will stop game, too.

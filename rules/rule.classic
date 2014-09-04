@@ -1,0 +1,20 @@
+#classic
+
+misses = 10
+
+min word length = 1
+max word length = 19
+
+min words = 1
+max words = 22
+
+highscore = yes
+min score = 0
+
+step = 175
+
+min speed = 3
+max speed = 0
+
+smooth = no
+

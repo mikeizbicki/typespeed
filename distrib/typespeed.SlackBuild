@@ -1,0 +1,136 @@
+#!/bin/sh
+#############################
+## Build script for: typespeed
+## Creator: http://kaneda.bohater.net/slackware
+## Date: 2007.11.29
+## Source location: http://tobias.eyedacor.org/typespeed/
+
+MYIN="kan"
+SLKCFLAGS="-march=i486 -mcpu=i686 -Wall -W -pedantic -std=c99 -g -O -D_GNU_SOURCE"
+ARCH="i486"
+WGET="/usr/bin/wget -c"
+CWD=`pwd`
+TMP=/tmp 
+PKG_DIR="/usr/src/slackpackages"
+
+#########################
+
+## Lets set the name of the program here so we can use it later.
+NAME=typespeed
+
+## Set the versions for packages here, these must match the source file version.
+PROGRAM_VER=0.6.4
+
+## Set the BUILD the $MYIN comes from the global config file in /etc
+BUILD=1$MYIN
+
+## Location to download the source
+SRC_LOC="http://paldium.homeunix.org/tobias/$NAME/$NAME-$PROGRAM_VER.tar.gz"
+
+## Set initial variables these should be standard in most packages:
+PKG=$TMP/package-$NAME
+
+if [ ! -d "$PKG_DIR" ] ; then
+  mkdir -p $PKG_DIR
+fi
+
+## Now we go grab the source for the user. Again global config has the wget line
+## We will check if it is here and if not then download
+if [ -f $CWD/$NAME-$PROGRAM_VER.tar.gz ]; then
+  echo "Source present not downloading"
+else
+  $WGET $SRC_LOC || true
+fi
+
+if [ ! -f $CWD/$NAME-$PROGRAM_VER.tar.gz ]; then
+  echo "ERROR: File cant be downloaded"
+  exit
+fi
+
+## Ok time to make sure the area is clean and unarchive the file
+rm -rf $PKG
+mkdir -p $PKG
+cd $TMP
+rm -rf $NAME-$PROGRAM_VER
+tar xvzf $CWD/$NAME-$PROGRAM_VER.tar.gz
+
+# Compile
+cd $TMP/$NAME-$PROGRAM_VER
+if [ "`pwd`" = "/tmp" ] ; then
+  echo "ERROR: something is wrong... we cant cd $TMP/$NAME-$PROGRAM_VER"
+  exit
+fi
+chown -R root.root .
+export CFLAGS=$SLKCFLAGS
+./configure --prefix=/usr --sysconfdir=/etc --localstatedir=/var --mandir=/usr/man/
+make
+make install DESTDIR=$PKG 
+
+# Doc files
+mkdir -p $PKG/usr/doc/$NAME-$PROGRAM_VER
+cp -f AUTHORS BUGS COPYING ChangeLog INSTALL NEWS README TODO $PKG/usr/doc/$NAME-$PROGRAM_VER/ 
+
+# Strip 
+cd $PKG 
+find . | xargs file | grep "executable" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+find . | xargs file | grep "shared object" | grep ELF | cut -f 1 -d : | xargs strip --strip-unneeded 2> /dev/null
+
+# Gzip man pages
+gzip -9q $PKG/usr/man/*/*
+gzip -9q $PKG/usr/man/*/*/*
+
+# Fix bin if Slackware < 11.0
+if [ "`cat /etc/slackware-version |cut -d " " -f 2 | cut -d "." -f 1`" -lt 11 ] ; then
+  for DIRECTORY in sbin usr/sbin bin usr/bin usr/local/bin usr/X11R6/bin; do
+    if [ -d $DIRECTORY ]; then
+      chown -R root.bin $DIRECTORY
+      chmod -R 755 $DIRECTORY
+    fi
+  done
+fi
+
+# Fix bad permission
+find $PKG -perm +0111 -exec chmod 755 {} \;
+find $PKG \! -perm +0111 -exec chmod 644 {} \;
+
+#Special permission for typespeed
+chmod g+s $PKG/usr/bin/typespeed
+chmod g+w $PKG/var/games/typespeed.score
+
+# Install dir
+mkdir -p $PKG/install
+
+if [ ! -z "`ls /var/log/packages/requiredbuilder-*`" ] ; then
+  requiredbuilder -p -y $PKG
+fi
+
+mkdir -p $PKG/usr/src/slackbuilds/
+
+# Copy SlackBuild file
+cp -f $CWD/$0 $PKG/usr/src/slackbuilds/
+
+# Create slack-desc
+cat > $PKG/install/slack-desc << END 
+         |-----handy-ruler------------------------------------------------------|
+typespeed: $NAME $PROGRAM_VER (Test your typing speed and get your fingers' CPS)
+typespeed:
+typespeed: Typespeed's idea is ripped from ztspeed (a DOS game made by Zorlim).
+typespeed: The Idea behind the game is rather easy: type words that are flying
+typespeed: by from left to right as fast as you can. If you miss 10 or more
+typespeed: words, game is over. Typespeed is a tool and game for testing your
+typespeed: typing speed. It displays your CPS (total and correct), typo ratio,
+typespeed: and some points to compare with your friends. It is a clone of
+typespeed: 'ztspeed', and features a network play mode for challenging friends.
+typespeed: WARNING: Its installed with sgid "games" on /usr/bin/typespeed.
+typespeed: My other Slackware packages : http://kaneda.bohater.net/slackware/
+END
+
+
+# Build the package:
+cd $PKG
+makepkg -l y -c n $TMP/$NAME-$PROGRAM_VER-$ARCH-$BUILD.tgz
+mv $TMP/$NAME-$PROGRAM_VER-$ARCH-$BUILD.tgz $PKG_DIR/
+
+#The end
+echo "Your $NAME package is complete."
+echo "It is located in $PKG_DIR. Check The Linuxpackages.net for other packages..."

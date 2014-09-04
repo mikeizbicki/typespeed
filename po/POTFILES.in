@@ -1,0 +1,6 @@
+# List of source files which contain translatable strings.
+src/file.c
+src/menu.c
+src/misc.c
+src/network.c
+src/typespeed.c

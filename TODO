@@ -1,0 +1,16 @@
+Some ideas what we have got (in no special order)
+-------------------------------------------------
+
+* different multiplayer types?
+* multiplayer uses random to send words, should it just send 1:2 of
+  the words, or something?
+* support for utf8 / switch to utf8
+* IPv6 support
+* network compatibility for older typespeed versions
+* documentation (comments, handbook(?), etc.)
+* color support should be more useful (i.e. use red for words a player
+  can't finish with his current cps rate)
+
+If you think those ideas are nice, implement them and send patch/source
+or what ever to us, then they will be most likely added to typespeed. :)
+

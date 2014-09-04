@@ -1,0 +1,5 @@
+     ../src/file.c \
+     ../src/menu.c \
+     ../src/misc.c \
+     ../src/network.c \
+     ../src/typespeed.c

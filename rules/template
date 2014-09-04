@@ -1,0 +1,62 @@
+#template
+
+# I think the most important tweak: adjust the misses limit.
+# Allowed numbers: 0 .. 99
+
+misses = 10
+
+# With the next two lines you can set the length of the used words.
+# This can be useful if you want to disable very long or very short
+# words in your wordfile. The smallest word length is 1, the highest
+# possible value for min and max is 19.
+
+min word length = 1
+max word length = 19
+
+# These values define the minimum and maximum number of words that are
+# shown at the same time. If you are a very fast typer, you should
+# increase the min words value so you can type all the time. This
+# should result in a better cps. Minimum is 1, maximum is 22.
+
+min words = 1
+max words = 22
+
+# You can adjust your highscore file with these values. highscore can
+# have two possible values:
+# no  - do not create a highscore entry
+# yes - allow highscore entries
+#
+# min score is the minimal score a player has to achieve to be listed
+# in your highscore. Without this barrier, a player could enter one
+# word correct and flood your highscore (much easier).
+
+highscore = yes
+min score = 0
+
+# Rate adjustment. The formula behind typespeed's speed increasement:
+#
+# rate = score / step + minspeed;
+#
+# The rate specifies how often words will be moved per second.
+# Each step, the rate will be increased by one, the default is 175.
+# A step cannot be smaller than 1.
+
+step = 175
+
+# These settings adjust the overall game speed. The min speed will be
+# the speed at the beginning of the game, max speed will be the
+# highest possible speed. Setting min and max speed to the same value
+# results in a steady game flow. The slowest possible speed is 1.
+#
+# Setting max speed to 0 deactivates a speed barrier.
+
+min speed = 3
+max speed = 0
+
+# This setting defines the smoothness of speed increasement. Older
+# typespeed versions (< 0.6.0) used an integer division instead of
+# float precision. Option "yes" remedies this bug. Only for backwards
+# compatibility (i.e. for users of typespeed < 0.6.0).
+
+smooth = yes
+

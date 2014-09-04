@@ -1,0 +1,104 @@
+How to install typespeed 0.6.5
+------------------------------
+Short answer: Type in "./configure && make all install" (without "").
+
+Index:
+1   Requirements
+1.1 Supported Plattforms
+1.2 Supported Operating Systems
+1.3 Needed Software
+2   Installing Typespeed
+2.1 Makefile Options
+3   File Structure
+
+1 Requirements
+--------------
+
+In order to compile typespeed, your system must fulfill the following
+requirements.
+
+1.1 Supported Plattforms
+------------------------
+
+On the following plattforms, typespeed is known to work with at least
+one operating system listed in 1.2:
+
+- i386
+- mipsel
+- x86_64
+
+1.2 Supported Operating Systems
+-------------------------------
+
+The following operating systems have been tested with typespeed.
+Due to limited resources, not every release can be tested with every
+operating system version.
+
+- Cygwin
+- FreeBSD
+- GNU/Linux (various distributions)
+- Mac OS X
+- OpenBSD
+- Windows
+
+1.3 Needed Software
+-------------------
+
+You need a working toolchain for c programs (i.e. c compiler and
+linker). Development and tests are done with gcc and binutils.
+Other compilers might work, too.
+
+Please use GNU make in order to build typespeed. Issues are known with
+other make implementations.
+
+Next to this your system must provide common header files.  If you use
+a linux distribution, these could be supplied with packages ending in
+-dev (e.g. libc-dev).
+
+The last requirement is a curses library with corresponding header
+files.  Most systems are shipped with different curses implementations.
+
+To give an overview, these packages are used for development
+(GNU/Linux system running on x86_64):
+
+name          | minimum version known to work | used version
+--------------+-------------------------------+--------------
+autoconf      | 2.59                          | 2.62
+automake      | 1.9                           | 1.10.1
+binutils      | 2.7                           | 2.17
+gcc           | 2.95.2                        | 4.2.1
+glibc         | 2.2.2                         | 2.7
+make (GNU)    | 3.79.1                        | 3.81
+ncurses       | 4.0                           | 5.6
+
+2 Installing Typespeed
+----------------------
+
+Please note that your system should have a group called "games".
+
+If you do not want to change any default settings, simply type in the
+following commands in top directory (do not type #):
+
+# ./configure && make all install
+
+3 File Structure
+----------------
+
+If you have installed typespeed without supplying configure options, the
+following files and directories will be created:
+
+/usr/local/bin/typespeed
+/usr/local/etc/typespeedrc
+/usr/local/share/doc/typespeed/README
+/usr/local/share/man/man6/typespeed.6
+/usr/local/share/typespeed/rules/ (contains game rules)
+/usr/local/share/typespeed/words/ (contains word lists)
+/usr/local/var/games/typespeed.score
+
+Additionaly, if your system supports i18n, the following files will be
+installed which contain menu translations:
+
+/usr/local/share/locale/de_DE/LC_MESSAGES/typespeed.mo
+/usr/local/share/locale/fr_FR/LC_MESSAGES/typespeed.mo
+/usr/local/share/locale/it/LC_MESSAGES/typespeed.mo
+

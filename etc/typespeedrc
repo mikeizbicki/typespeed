@@ -1,0 +1,4 @@
+cheat = no
+highorder = score cps tcps
+ruledir = /usr/local/share/typespeed/rules
+worddir = /usr/local/share/typespeed/words
