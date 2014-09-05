@@ -1,3 +1,5 @@
+NOTE: The "real" version of typespeed can be found on sourceforge at: http://typespeed.sourceforge.net/.  This repo contains a number of changes for the CS100 course designed to demonstrate some advantages and disadvantages of open source software.  The main advantage is we've customized it to simplify multiuser use on the UCR network.  The main disadvantage is that I've removed many references in the program's output to the original authors, and am claiming quite a bit of unwarranted personal responsability for the project.
+
 typespeed v0.6.4
 ----------------
 Test your typing speed and get your fingers' CPS.
