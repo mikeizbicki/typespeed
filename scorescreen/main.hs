@@ -31,5 +31,5 @@ totalScore (x:xs) = getScore x + totalScore xs
 
 -- Returns the score as an Int from single score entry
 getScore :: [B.ByteString] -> Int
-getScore [] = error "getScore: Input does not exist"
+getScore [] = 0
 getScore x = read (B.unpack (x !! 0)) :: Int
