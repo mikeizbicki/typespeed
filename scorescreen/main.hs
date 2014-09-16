@@ -6,7 +6,7 @@ import qualified Data.ByteString.Char8 as B
 
 main = do
     contents <- fmap B.lines $ B.readFile "/usr/local/var/games/typespeed.score" 
-    let score = wordsLines contents
+    let score = wordsLines contents -- Contains the 2d list of scores
     print $ averageScore score
 
 
@@ -17,16 +17,16 @@ wordsLines [] = []
 wordsLines (x:xs) = [B.words x] ++ wordsLines xs
 
 
+-- Returns average score from total score
+averageScore :: [[B.ByteString]] -> Int
+averageScore x = (totalScore x) `div` length x
+
+
 -- Returns total score from 2d score list
 totalScore :: [[B.ByteString]] -> Int 
 totalScore [] = getScore []
 totalScore [x] = getScore x
 totalScore (x:xs) = getScore x + totalScore xs
-
-
--- Returns average score from total score
-averageScore :: [[B.ByteString]] -> Int
-averageScore x = (totalScore x) `div` length x
 
 
 -- Returns the score as an Int from single score entry
