@@ -1,4 +1,5 @@
 import qualified Data.ByteString.Char8 as B
+import           Data.List
 
 -- Score Format:
 -- score    total count    enter offset    name    word list    rule set    duration    time
@@ -7,6 +8,12 @@ import qualified Data.ByteString.Char8 as B
 main = do
     contents <- fmap B.lines $ B.readFile "/usr/local/var/games/typespeed.score" 
     let score = wordsLines contents -- Contains the 2d list of scores
+
+    putStr "Top 10: \n"
+    let top = top10 score
+    print top
+
+    putStr "\nAverage score: "
     print $ averageScore score
 
 
@@ -15,6 +22,11 @@ main = do
 wordsLines :: [B.ByteString] -> [[B.ByteString]]
 wordsLines [] = []
 wordsLines (x:xs) = [B.words x] ++ wordsLines xs
+
+
+-- Gets top 10 scores
+top10 :: [[B.ByteString]] -> [[B.ByteString]]
+top10 x = take 10 $ reverse $ sort x
 
 
 -- Returns average score from total score
