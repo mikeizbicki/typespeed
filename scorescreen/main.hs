@@ -1,6 +1,16 @@
 import qualified Data.ByteString.Char8 as B
 import           Data.List
 
+{-
+    TODO:
+    [x] Create 2d list
+    [x] Top 10 scores
+    [x] Average score
+    [ ] Split list into groups (TA, sections, scores of the week, user progress, etc)
+    [ ] Top 10 addicts
+
+-}
+
 -- Score Format:
 -- score    total count    enter offset    name    word list    rule set    duration    time
 
