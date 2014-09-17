@@ -8,7 +8,6 @@ import           Data.List
     [x] Average score
     [ ] Split list into groups (TA, sections, scores of the week, user progress, etc)
     [ ] Top 10 addicts
-
 -}
 
 -- Score Format:
