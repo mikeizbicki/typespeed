@@ -18,6 +18,14 @@ main = do
     contents <- fmap B.lines $ B.readFile "/usr/local/var/games/typespeed.score" 
     let score = wordsLines contents -- Contains the 2d list of scores
 
+    putStr "Dat's scores \n"
+    let dat = filterGroup ["dat"] score
+    print dat
+    
+    putStr "Jon's scores \n"
+    let jon = filterGroup ["jon"] score
+    print jon
+	
     putStr "Top 10: \n"
     let top = top10 score
     print top
@@ -30,7 +38,7 @@ main = do
 -- Used to create 2d array out of list of scores
 wordsLines :: [B.ByteString] -> [[B.ByteString]]
 wordsLines [] = []
-wordsLines (x:xs) = [B.words x] ++ wordsLines xs
+wordsLines (x:xs) = (B.words x) : (wordsLines xs)
 
 
 -- Gets top 10 scores
@@ -54,3 +62,18 @@ totalScore (x:xs) = getScore x + totalScore xs
 getScore :: [B.ByteString] -> Int
 getScore [] = 0
 getScore x = read (B.unpack (x !! 0)) :: Int
+
+-- Generic function for filtering list of score entries by certain groups
+filterGroup :: [String] -> [[B.ByteString]] -> [[B.ByteString]]
+-- filterGroup gs [] = []
+filterGroup gs bss = filter (elemGroup) bss
+    where elemGroup bs = getUser bs `elem` gs
+
+--returns the user as a B.Bytestring from single score entry
+getUserBS :: [B.ByteString] -> B.ByteString
+getUserBS [] = B.empty
+getUserBS x = x !! 3
+
+--returns the user as a String from single score entry
+getUser :: [B.ByteString] -> String
+getUser = B.unpack . getUserBS
