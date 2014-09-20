@@ -39,6 +39,10 @@ main = do
 
     putStr "\nAverage score: "
     print $ averageScore score
+    
+    putStr "\nTop 10 addicts: \n"
+    let addicts = top10Addicts score
+    print addicts
 
 
 -- Calls words on all lines of a list
@@ -87,3 +91,23 @@ getUserBS x = x !! 3
 --returns the user as a String from single score entry
 getUser :: [B.ByteString] -> String
 getUser = B.unpack . getUserBS
+
+
+-- returns the 10 users who have played the most games, along with # of games played
+top10Addicts :: [[B.ByteString]] -> [(Int,B.ByteString)]
+top10Addicts x = take 10 $ reverse $ sort $ count $ map getUserBS x
+    
+-- counts the number of times an item appears in a list
+instances :: (Eq a) => a -> [a] -> Int
+instances _ [] = 0
+instances x (y:ys)
+    | x ==y = 1 + instances x ys
+    | otherwise = instances x ys
+    
+-- returns a list tuples of each member of a list along with the number of times
+-- it appears in that list, i.e. counts number of times each item appears in list
+count :: (Eq a) => [a] -> [(Int,a)]
+count [] = []
+count (x:xs) = (totalNum,x) : (count filtered_xs)
+    where filtered_xs = filter (/= x) xs
+          totalNum = 1 + instances x xs
