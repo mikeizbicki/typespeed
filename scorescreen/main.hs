@@ -8,7 +8,7 @@ import           System.Posix.User
     [x] Top 10 scores
     [x] Average score
     [ ] Split list into groups (TA, sections, scores of the week, user progress, etc)
-    [ ] Top 10 addicts
+    [x] Top 10 addicts
 -}
 
 -- Score Format:
