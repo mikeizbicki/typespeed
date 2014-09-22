@@ -2,6 +2,8 @@ import qualified Data.ByteString.Char8 as B
 import           Data.List
 import           System.Posix.User
 import           Data.Time.Clock.POSIX
+import           Display
+
 
 {-
     TODO:
@@ -50,7 +52,9 @@ main = do
     let weekScore = filterTime week curTime score
     putStr "\nScores of the week: \n"
     print weekScore
-    
+
+    display -- creates HTML page
+
 
 -- Calls words on all lines of a list
 -- Used to create 2d array out of list of scores
