@@ -1,17 +1,19 @@
 module Display where
 
-display :: IO ()
-display = do
-       writeFile "index.html" file
+import qualified Data.ByteString.Char8 as B
+
+display :: String -> IO ()
+display x = do
+       writeFile "index.html" $ file x
        
        
-file :: String
-file =    "<!DOCTYPE html>\n"
-       ++ "<html>\n"
-       ++ "<head>\n"
-       ++ "<title>Score Page</title>\n"
-       ++ "</head>\n"
-       ++ "<body>\n"
-       ++ "Stuff\n"
-       ++ "</body>\n"
-       ++ "</html>\n"
+file :: String -> String
+file x =    "<!DOCTYPE html>\n"
+         ++ "<html>\n"
+         ++ "<head>\n"
+         ++ "<title>Score Page</title>\n"
+         ++ "</head>\n"
+         ++ "<body>\n"
+         ++ x 
+         ++ "</body>\n"
+         ++ "</html>\n"

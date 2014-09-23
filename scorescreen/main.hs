@@ -53,7 +53,7 @@ main = do
     putStr "\nScores of the week: \n"
     print weekScore
 
-    display -- creates HTML page
+    display $ unWordsLines top -- Creates HTML page displaying top as a string
 
 
 -- Calls words on all lines of a list
@@ -61,6 +61,15 @@ main = do
 wordsLines :: [B.ByteString] -> [[B.ByteString]]
 wordsLines [] = []
 wordsLines (x:xs) = (B.words x) : (wordsLines xs)
+
+
+-- Converts list of list into a String for easy printing
+unWordsLines :: [[B.ByteString]] -> String
+unWordsLines [] = []
+unWordsLines x = B.unpack $ B.unlines $ unworded x
+    where unworded [] = []
+          unworded (x':xs') = (B.unwords x') : (unworded xs')
+
 
 
 -- Gets top 10 scores
@@ -93,23 +102,23 @@ filterGroup gs bss = filter (elemGroup) bss
     where elemGroup bs = getUser bs `elem` gs
 
 
---returns the user as a B.Bytestring from single score entry
+-- Returns the user as a B.Bytestring from single score entry
 getUserBS :: [B.ByteString] -> B.ByteString
 getUserBS [] = B.empty
 getUserBS x = x !! 3
 
 
---returns the user as a String from single score entry
+-- Returns the user as a String from single score entry
 getUser :: [B.ByteString] -> String
 getUser = B.unpack . getUserBS
 
 
--- returns the 10 users who have played the most games, along with # of games played
+-- Returns the 10 users who have played the most games, along with # of games played
 top10Addicts :: [[B.ByteString]] -> [(Int,B.ByteString)]
 top10Addicts x = take 10 $ reverse $ sort $ count $ map getUserBS x
     
 
--- counts the number of times an item appears in a list
+-- Counts the number of times an item appears in a list
 instances :: (Eq a) => a -> [a] -> Int
 instances _ [] = 0
 instances x (y:ys)
@@ -117,7 +126,7 @@ instances x (y:ys)
     | otherwise = instances x ys
     
 
--- returns a list tuples of each member of a list along with the number of times
+-- Returns a list tuples of each member of a list along with the number of times
 -- it appears in that list, i.e. counts number of times each item appears in list
 count :: (Eq a) => [a] -> [(Int,a)]
 count [] = []
@@ -126,13 +135,13 @@ count (x:xs) = (totalNum,x) : (count filtered_xs)
           totalNum = 1 + instances x xs
 
 
--- returns the time that the score was recorded from a single entry
+-- Returns the time that the score was recorded from a single entry
 getTime :: [B.ByteString] -> Int
 getTime [] = 0
 getTime x = read (B.unpack (x !! 7)) :: Int
 
 
--- returns the scores that were recorded within the given period
+-- Returns the scores that were recorded within the given period
 filterTime :: Int -> Int -> [[B.ByteString]] -> [[B.ByteString]]
 filterTime _ _ [] = []
 filterTime period current x = filter (group) x
