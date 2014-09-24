@@ -5,14 +5,6 @@ import           Data.Time.Clock.POSIX
 import           Display
 
 
-{-
-    TODO:
-    [x] Create 2d list
-    [x] Top 10 scores
-    [x] Average score
-    [ ] Split list into groups (TA, sections, scores of the week, user progress, etc)
-    [x] Top 10 addicts
--}
 
 -- Score Format:
 -- score    total count    enter offset    name    word list    rule set    duration    time
@@ -53,7 +45,7 @@ main = do
     putStr "\nScores of the week: \n"
     print weekScore
 
-    display $ unWordsLines top -- Creates HTML page displaying top as a string
+    display "Top 10" "top10.html" top -- Creates HTML page displaying top as a string
 
 
 -- Calls words on all lines of a list
@@ -74,7 +66,13 @@ unWordsLines x = B.unpack $ B.unlines $ unworded x
 
 -- Gets top 10 scores
 top10 :: [[B.ByteString]] -> [[B.ByteString]]
-top10 x = take 10 $ reverse $ sort x
+top10 x = take 10 $ sortBy order x
+    where order bs1 bs2
+              | num1 < num2 = GT
+              | num1 == num2 = EQ
+              | otherwise = LT
+              where num1 = read (B.unpack $ head bs1) :: Int
+                    num2 = read (B.unpack $ head bs2) :: Int
 
 
 -- Returns average score from total score
