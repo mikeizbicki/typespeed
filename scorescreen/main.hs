@@ -45,7 +45,7 @@ main = do
     putStr "\nScores of the week: \n"
     print weekScore
 
-    display "Top 10" "top10.html" top -- Creates HTML page displaying top as a string
+    display "Top 10 Scores" "top10.html" top addicts $ averageScore score -- Creates HTML page displaying top as a string
 
 
 -- Calls words on all lines of a list
@@ -112,7 +112,7 @@ getUser = B.unpack . getUserBS
 
 
 -- Returns the 10 users who have played the most games, along with # of games played
-top10Addicts :: [[B.ByteString]] -> [(Int,B.ByteString)]
+top10Addicts :: [[B.ByteString]] -> [[B.ByteString]]
 top10Addicts x = take 10 $ reverse $ sort $ count $ map getUserBS x
     
 
@@ -126,9 +126,9 @@ instances x (y:ys)
 
 -- Returns a list tuples of each member of a list along with the number of times
 -- it appears in that list, i.e. counts number of times each item appears in list
-count :: (Eq a) => [a] -> [(Int,a)]
+count :: [B.ByteString] -> [[B.ByteString]]
 count [] = []
-count (x:xs) = (totalNum,x) : (count filtered_xs)
+count (x:xs) = [(B.pack $ show totalNum), x] : count filtered_xs
     where filtered_xs = filter (/= x) xs
           totalNum = 1 + instances x xs
 
