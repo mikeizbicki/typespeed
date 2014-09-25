@@ -1,5 +1,5 @@
 table, th, td {
-    border: 1px solid black;
+    border: 2px solid gray;
     padding: 10px;
 }
 
@@ -10,4 +10,14 @@ table {
 
 h1 {
     text-align: center;
+}
+
+body {
+    background-color: black;
+    background-image: url('./img/binding_dark.png');
+    background-repeat: repeat;
+    color: white;
+    text-align: center;
+    font-family: helvetica ,monospace; 
+    font-size: 18px;
 }
