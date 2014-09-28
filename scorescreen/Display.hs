@@ -11,29 +11,33 @@ module Display where
 import qualified Data.ByteString.Char8 as B
 
 -- prints html to specified file
-display :: String -> String -> [[B.ByteString]] -> [[B.ByteString]] -> Int -> IO ()
-display title fileLoc bss addicts avg = do
-       writeFile fileLoc $ file title (listToTable $ removeJunk bss) (listToAddicts addicts) (show avg)
+display :: String -> String -> [[B.ByteString]] -> [[B.ByteString]] -> Float -> Float -> IO ()
+display title fileLoc bss addicts avg dev = do
+       writeFile fileLoc $ file title (listToTable $ removeJunk bss) (listToAddicts addicts) (show avg) (show dev)
        
  
 -- creates html string      
-file :: String -> String -> String -> String -> String
-file title top addicts avg =    "<!DOCTYPE html>\n"
-                             ++ "<html>\n"
-                             ++ "<head>\n"
-                             ++ "<link type=\"text/css\" rel=\"stylesheet\" href=\"stylesheet.css\" >\n"
-                             ++ "<title>" ++ title ++ "</title>\n"
-                             ++ "</head>\n"
-                             ++ "<body>\n"
-                             ++ "<center><img src=\"./img/typespeedlogo.png\"/></center>"
-                             ++ "<br>"
-                             ++ "<h3> &#8212 " ++ title ++ " &#8212 </h3>"
-                             ++ top 
-                             ++ addicts
-                             ++ "<br>\n"
-                             ++ "<strong>Average score: " ++ avg ++ "</strong>\n"
-                             ++ "</body>\n"
-                             ++ "</html>\n"
+file :: String -> String -> String -> String -> String -> String
+file title top addicts avg dev =    "<!DOCTYPE html>\n"
+                                 ++ "<html>\n"
+                                 ++ "<head>\n"
+                                 ++ "<link type=\"text/css\" rel=\"stylesheet\" href=\"stylesheet.css\" >\n"
+                                 ++ "<title>" ++ title ++ "</title>\n"
+                                 ++ "</head>\n"
+                                 ++ "<body>\n"
+                                 ++ "<center><img src=\"./img/typespeedlogo.png\"/></center>"
+                                 ++ "<br>"
+                                 ++ "<h3> &#8212 " ++ title ++ " &#8212 </h3>"
+                                 ++ top 
+                                 ++ addicts
+                                 ++ "<br>\n"
+                                 ++ "<br>\n"
+                                 ++ "<strong>Average score: " ++ avg ++ "</strong>\n"
+                                 ++ "<br>\n"
+                                 ++ "<br>\n"
+                                 ++ "<strong>Standard deviation: " ++ dev ++ "</strong>\n"
+                                 ++ "</body>\n"
+                                 ++ "</html>\n"
 
 
 -- converts scores into html table format for all stats

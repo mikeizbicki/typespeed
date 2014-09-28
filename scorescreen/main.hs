@@ -2,6 +2,7 @@ import qualified Data.ByteString.Char8 as B
 import           Data.List
 import           System.Posix.User
 import           Data.Time.Clock.POSIX
+import           Math.Statistics
 import           Display
 
 
@@ -33,7 +34,10 @@ main = do
     print top
 
     putStr "\nAverage score: "
-    print $ averageScore score
+    print $ mean $ getScore score
+
+    putStr "\nStandard deviation: "
+    print $ stddev $ getScore score
     
     putStr "\nTop 10 addicts: \n"
     let addicts = top10Addicts score
@@ -45,7 +49,7 @@ main = do
     putStr "\nScores of the week: \n"
     print weekScore
 
-    display "Top 10 Scores" "top10.html" top addicts $ averageScore score -- Creates HTML page displaying top as a string
+    display "Top 10 Scores" "top10.html" top addicts (mean $ getScore score) (stddev $ getScore score) -- Creates HTML page displaying top as a string
 
 
 -- Calls words on all lines of a list
@@ -75,22 +79,10 @@ top10 x = take 10 $ sortBy order x
                     num2 = read (B.unpack $ head bs2) :: Int
 
 
--- Returns average score from total score
-averageScore :: [[B.ByteString]] -> Int
-averageScore x = (totalScore x) `div` length x
-
-
--- Returns total score from 2d score list
-totalScore :: [[B.ByteString]] -> Int 
-totalScore [] = getScore []
-totalScore [x] = getScore x
-totalScore (x:xs) = getScore x + totalScore xs
-
-
--- Returns the score as an Int from single score entry
-getScore :: [B.ByteString] -> Int
-getScore [] = 0
-getScore x = read (B.unpack (x !! 0)) :: Int
+-- Returns a list of Floats to pass to statistics functions
+getScore :: [[B.ByteString]] -> [Float]
+getScore [] = []
+getScore (x:xs) = (read (B.unpack (x !! 0)) :: Float) : getScore xs
 
 
 -- Generic function for filtering list of score entries by certain groups
