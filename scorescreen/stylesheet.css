@@ -21,3 +21,33 @@ body {
     font-family: helvetica ,monospace; 
     font-size: 18px;
 }
+
+ul{
+	list-style-type: none;
+	position: fixed;
+	margin: -6px;
+    
+}
+
+li {
+	display: inline;
+	border: 2px solid gray;
+	font-family: helvetica ,monospace;
+	color: white;
+	padding: 2px;
+	/*border-radius: 5px 5px;*/
+	background-color: gray;
+}
+
+#navbar {
+	position: fixed;
+	top:10px;
+	left:50%;
+	margin-left:-254px;
+}
+
+#header {
+    position: relative;
+    border: 16px solid gray;
+    top: -8px;
+}
