@@ -28,10 +28,10 @@ file title top addicts avg dev =    "<!DOCTYPE html>\n"
                                  ++ "<div id=\"header\">\n"
                                  ++ "<div id=\"navbar\">\n"
                                  ++ "<ul>\n"
-                                 ++ "<li>All Scores</li>\n"          -- need to create function to fill in
-                                 ++ "<li>TA Scores</li>\n"           -- however many headings there are
-                                 ++ "<li>Section Scores</li>\n"
-                                 ++ "<li>Your Scores</li>\n"
+                                 ++ "<li><a href=\"https://www.google.com/\">All Scores</a></li>\n"          -- need to create function to fill in
+                                 ++ "<li><a href=\"https://www.google.com/\">TA Scores</a></li>\n"           -- however many headings there are
+                                 ++ "<li><a href=\"https://www.google.com/\">Section Scores</a></li>\n"
+                                 ++ "<li><a href=\"https://www.google.com/\">Your Scores</a></li>\n"
                                  ++ "</ul>\n"
                                  ++ "</div>\n"
                                  ++ "</div>\n"
