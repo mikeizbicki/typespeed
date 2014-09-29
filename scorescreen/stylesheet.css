@@ -24,29 +24,30 @@ body {
 
 
 ul {
-	list-style-type: none;
-	margin: -6px;
+    list-style-type: none;
+    margin: -6px;
     
 }
 
 
-li {
-	display: inline;
-	border: 2px solid gray;
-	font-family: helvetica, monospace;
-	color: white;
-	padding: 2px;
-	/*border-radius: 5px 5px;*/
-	background-color: gray;
+li, a {
+    display: inline;
+    border: 2px solid gray;
+    font-family: helvetica, monospace;
+    color: white;
+    padding: 2px;
+    /*border-radius: 5px 5px;*/
+    background-color: gray;
+    text-decoration: none;
 }
 
-li:hover {
+li, a:hover {
     color: #303030;
 }
 
 #navbar {
-	top:10px;
-	margin-left:-35px;
+    top:10px;
+    margin-left:-35px;
     background-color: gray;
 }
 
@@ -58,4 +59,5 @@ li:hover {
     margin-left: -8px;
     margin-right: -8px;
 }
+
 
