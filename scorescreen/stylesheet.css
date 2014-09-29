@@ -32,17 +32,15 @@ ul {
 
 li, a {
     display: inline;
-    /*border: 2px solid gray;*/
     font-family: helvetica, monospace;
     color: white;
     padding: 2px;
-    /*border-radius: 5px 5px;*/
     background-color: none;
     text-decoration: none;
 }
 
 li, a:hover {
-    color: #303030;
+    color: #909090;
 }
 
 #navbar {
@@ -60,7 +58,8 @@ li, a:hover {
     top: -8px;
     margin-left: 0px;
     margin-right: 0px;
-    background-color: gray;
+    /*background-image: url('./img/metal_pattern.jpg');
+    background-repeat: repeat;
 }
 
 
