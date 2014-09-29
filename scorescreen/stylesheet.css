@@ -18,36 +18,44 @@ body {
     background-repeat: repeat;
     color: white;
     text-align: center;
-    font-family: helvetica ,monospace; 
+    font-family: helvetica, monospace; 
     font-size: 18px;
 }
 
-ul{
+
+ul {
 	list-style-type: none;
-	position: fixed;
 	margin: -6px;
     
 }
 
+
 li {
 	display: inline;
 	border: 2px solid gray;
-	font-family: helvetica ,monospace;
+	font-family: helvetica, monospace;
 	color: white;
 	padding: 2px;
 	/*border-radius: 5px 5px;*/
 	background-color: gray;
 }
 
-#navbar {
-	position: fixed;
-	top:10px;
-	left:50%;
-	margin-left:-254px;
+li:hover {
+    color: #303030;
 }
+
+#navbar {
+	top:10px;
+	margin-left:-35px;
+    background-color: gray;
+}
+
 
 #header {
     position: relative;
     border: 16px solid gray;
     top: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
 }
+
