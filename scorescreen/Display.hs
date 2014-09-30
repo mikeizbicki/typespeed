@@ -4,7 +4,7 @@ module Display where
     [x] edit file to take parameter for Title of Page
     [ ] make a page for each group (Global, you, ta's, sections, time) --Jon
     [ ] beautify it --Dat
-    [ ] add top 10 addicts and avg to each page + std dev --Dat
+    [x] add top 10 addicts and avg to each page + std dev --Dat
     [ ] create navigation pane --Jon
 -}
 
@@ -13,7 +13,7 @@ import qualified Data.ByteString.Char8 as B
 -- prints html to specified file
 display :: String -> String -> [[B.ByteString]] -> [[B.ByteString]] -> Float -> Float -> IO ()
 display title fileLoc bss addicts avg dev = do
-       writeFile fileLoc $ file title (listToTable $ removeJunk bss) (listToAddicts addicts) (show avg) (show dev)
+       writeFile fileLoc $ file title (listToTable (removeJunk bss) title) (listToAddicts addicts) (show avg) (show dev)
        
  
 -- creates html string      
@@ -36,9 +36,11 @@ file title top addicts avg dev =    "<!DOCTYPE html>\n"
                                  ++ "</div>\n"
                                  ++ "</div>\n"
                                  ++ "<div>\n"
+                                 ++ "<br>\n"
+                                 ++ "<br>\n"
                                  ++ "<center><img src=\"./img/typespeedlogo.png\"/></center>"
-                                 ++ "<br>"
-                                 ++ "<h3> &#8212 " ++ title ++ " &#8212 </h3>"
+                                 ++ "<br>\n"
+                                 ++ "<br>\n"
                                  ++ top 
                                  ++ addicts
                                  ++ "<br>\n"
@@ -53,15 +55,14 @@ file title top addicts avg dev =    "<!DOCTYPE html>\n"
 
 
 -- converts scores into html table format for all stats
-listToTable :: [[B.ByteString]] -> String
-listToTable bss =    "<center>\n"
-                  ++ "<table>\n"
+listToTable :: [[B.ByteString]] -> String -> String
+listToTable bss title =    "<table id=\"tleft\">\n"
                   ++ "<tr>\n"
+                  ++ "<tr id=\"title\"><td colspan=\"5\">&#8212 " ++ title ++ " &#8212</td></tr>\n"
                   ++ "<th>Score</th>\n<th>Username</th>\n<th>Chars Entered</th>\n<th>Words Entered</th>\n<th>Duration (s)</th>\n"
                   ++ "</tr>\n"
                   ++ rows bss
                   ++ "</table>\n"
-                  ++ "</center>\n"
     where rows [] = ""
           rows (bs':bss') =    "<tr>\n"
                             ++ entries bs'
@@ -76,16 +77,14 @@ listToTable bss =    "<center>\n"
 
 -- converts scores into html table format for addicts
 listToAddicts :: [[B.ByteString]] -> String
-listToAddicts bss =  "<center>\n"
-                  ++ "<br>\n"
-                  ++ "<h3> &#8212 Top 10 Addicts &#8212 </h3>"
-                  ++ "<table>\n"
+listToAddicts bss =  
+                     "<table id=\"tright\">\n"
                   ++ "<tr>\n"
+                  ++ "<tr id=\"title\"><td colspan=\"2\">&#8212 Top 10 Addicts &#8212</td></tr>\n"
                   ++ "<th>Times Played</th>\n<th>Username</th>\n"
                   ++ "</tr>\n"
                   ++ rows bss
                   ++ "</table>\n"
-                  ++ "</center>\n"
     where rows [] = ""
           rows (bs':bss') =    "<tr>\n"
                             ++ entries bs'

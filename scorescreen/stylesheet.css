@@ -3,14 +3,17 @@ table, th, td {
     padding: 10px;
 }
 
+
 table {
     border-collapse: collapse;
     text-align: center;
 }
 
+
 h1 {
     text-align: center;
 }
+
 
 body {
     background-color: black;
@@ -26,7 +29,6 @@ body {
 ul {
     list-style-type: none;
     margin: -6px;
-    
 }
 
 
@@ -54,12 +56,19 @@ li, a:hover {
 
 #header {
     position: relative;
-    /*border: 16px solid black;*/
     top: -8px;
     margin-left: 0px;
     margin-right: 0px;
-    /*background-image: url('./img/metal_pattern.jpg');
-    background-repeat: repeat;
 }
 
 
+#tright, #tleft {
+    position: relative;
+    display: inline-block;
+    border: none;
+}
+
+
+#title {
+    font-weight: bold;
+}
