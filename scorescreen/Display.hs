@@ -19,7 +19,7 @@ display title fileLoc bss = do
        groupList' <- getDirectoryContents "groups"
        let groupList = sort $ filter (\x -> if head x == '.' then False else True) groupList'
        names <- getNames groupList
-       writeFile fileLoc $ (htmlPage title) ++ (file (listToTable (removeJunk bss) "") (listToAddicts (top10Addicts bss) "") (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "</body>\n" ++ "</html>\n"
+       writeFile fileLoc $ (htmlPage title) ++ (file (listToTable (removeJunk $ top10 bss) "") (listToAddicts (top10Addicts bss) "") (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "<br><br><p>By: Jonathan Dugan & Dat Do<p>\n" ++ "</body>\n" ++ "</html>\n"
           where getNames [] = return []
                 getNames (x:xs) = do
                          contents <- fmap lines $ readFile $ "groups/" ++ x
@@ -53,7 +53,7 @@ htmlPage title =    "<!DOCTYPE html>\n"
 displayGroups :: [String] -> [[String]] -> [[B.ByteString]] -> String
 displayGroups [] _ _ = ""
 displayGroups _ [] _ = ""
-displayGroups (x:xs)(g:gs) bss = file (listToTable (removeJunk gss ) $ takeFileName x) (listToAddicts (top10Addicts gss) $ takeFileName x) (show $ mean $ getScore gss) (show $ stddev $ getScore gss) ++ displayGroups xs gs bss
+displayGroups (x:xs)(g:gs) bss = file (listToTable (removeJunk $ top10 gss) $ takeFileName x) (listToAddicts (top10Addicts gss) $ takeFileName x) (show $ mean $ getScore gss) (show $ stddev $ getScore gss) ++ displayGroups xs gs bss
     where gss = filterGroup g bss
                   
 

@@ -1,9 +1,4 @@
 @font-face {
-  font-family: 'Kubasta';
-  src: url('http://www.fontsaddict.com/fontface/kubasta.ttf');
-}
-
-@font-face {
   font-family: 'Moder DOS 437';
   src: url('./img/Moder DOS 437.ttf');
 }
@@ -82,3 +77,8 @@ li, a:hover {
     font-weight: bold;
 }
 
+
+p {
+    font-size: 12px;
+    float: right;
+}
