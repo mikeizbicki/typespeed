@@ -14,17 +14,18 @@ import           System.Directory
 import           System.FilePath.Posix
 
 -- prints html to specified file
-display :: String -> String -> [[B.ByteString]] -> IO ()
-display title fileLoc bss = do
+display :: String -> String -> String -> [[B.ByteString]] -> IO ()
+display userID title fileLoc bss = do
        groupList' <- getDirectoryContents "groups"
-       let groupList = sort $ filter (\x -> if head x == '.' then False else True) groupList'
+       let groupList = sort $ filter (\x -> if head x == '.' then False else True) groupList' -- removes '.' and '..' directories
        names <- getNames groupList
-       writeFile fileLoc $ (htmlPage title) ++ (file (listToTable (removeJunk $ top10 bss) "") (listToAddicts (top10Addicts bss) "") (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "<br><br><p>By: Jonathan Dugan & Dat Do<p>\n" ++ "</body>\n" ++ "</html>\n"
+       writeFile fileLoc $ (htmlPage title) ++ (file "Your Scores" (listToTable $ removeJunk $ top10 you) "" (show $ mean $ getScore you) (show $ stddev $ getScore you)) ++ (file "All Scores" (listToTable $ removeJunk $ top10 bss) (listToAddicts $ top10Addicts bss) (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "<br><br><p>By: Jonathan Dugan & Dat Do<p>\n" ++ "</body>\n" ++ "</html>\n"
           where getNames [] = return []
                 getNames (x:xs) = do
                          contents <- fmap lines $ readFile $ "groups/" ++ x
                          restOfContents <- getNames xs
                          return $ contents:restOfContents
+                you = filterGroup[userID] bss
 
        
 htmlPage :: String -> String
@@ -35,6 +36,7 @@ htmlPage title =    "<!DOCTYPE html>\n"
                  ++ "<title>" ++ title ++ "</title>\n"
                  ++ "</head>\n"
                  ++ "<body>\n"
+                 ++ forkMe
                  ++ "<div id=\"header\">\n"
                  ++ "<div id=\"navbar\">\n"
                  ++ "<ul>\n"
@@ -48,18 +50,25 @@ htmlPage title =    "<!DOCTYPE html>\n"
                  ++ "<br>\n"
                  ++ "<br>\n"
                  ++ "<center><img src=\"./img/typespeedlogo.png\"/></center>\n"
+                 ++ "<br>\n"
+        where forkMe = "<a href=\"https://github.com/mikeizbicki/typespeed\"><img style=\"position: absolute; top: 0; right: 0; border: 0;\" src=\"https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67\" alt=\"Fork me on GitHub\" data-canonical-src=\"https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png\"></a>\n"
 
 -- A very nasty function - Good Luck!
 displayGroups :: [String] -> [[String]] -> [[B.ByteString]] -> String
 displayGroups [] _ _ = ""
 displayGroups _ [] _ = ""
-displayGroups (x:xs)(g:gs) bss = file (listToTable (removeJunk $ top10 gss) $ takeFileName x) (listToAddicts (top10Addicts gss) $ takeFileName x) (show $ mean $ getScore gss) (show $ stddev $ getScore gss) ++ displayGroups xs gs bss
+displayGroups (x:xs)(g:gs) bss = file (takeFileName x) top10_gss top10Addicts_gss avg dev ++ displayGroups xs gs bss
     where gss = filterGroup g bss
+          top10_gss = listToTable $ removeJunk $ top10 gss
+          top10Addicts_gss = listToAddicts $ top10Addicts gss
+          avg = show $ mean $ getScore gss
+          dev = show $ stddev $ getScore gss
                   
 
 -- creates html string      
-file :: String -> String -> String -> String -> String
-file top addicts avg dev =       "<br><br>\n"
+file :: String -> String -> String -> String -> String -> String
+file title top addicts avg dev =    "<hr />\n"
+                                 ++ "<h2>" ++ title ++ "</h2>\n"
                                  ++ top 
                                  ++ addicts
                                  ++ "<br>\n"
@@ -68,14 +77,15 @@ file top addicts avg dev =       "<br><br>\n"
                                  ++ "<br>\n"
                                  ++ "<br>\n"
                                  ++ "<strong>Standard deviation: " ++ dev ++ "</strong>\n"
+                                 ++ "<br><br>\n"
                                  
 
 
 -- converts scores into html table format for all stats
-listToTable :: [[B.ByteString]] -> String -> String
-listToTable bss title =    "<table id=\"tleft\">\n"
+listToTable :: [[B.ByteString]] -> String
+listToTable bss =    "<table id=\"tleft\">\n"
                   ++ "<tr>\n"
-                  ++ "<tr id=\"title\"><td colspan=\"5\">&#8212 Top " ++ title ++ " Scores &#8212</td></tr>\n"
+                  ++ "<tr id=\"title\"><td colspan=\"5\">&#8212 Top 10 Scores &#8212</td></tr>\n"
                   ++ "<th>Score</th>\n<th>Username</th>\n<th>Chars Entered</th>\n<th>Words Entered</th>\n<th>Duration (s)</th>\n"
                   ++ "</tr>\n"
                   ++ rows bss
@@ -93,12 +103,11 @@ listToTable bss title =    "<table id=\"tleft\">\n"
 
 
 -- converts scores into html table format for addicts
-listToAddicts :: [[B.ByteString]] -> String -> String
-listToAddicts [] _ = ""
-listToAddicts bss title =  
-                     "<table id=\"tright\">\n"
+listToAddicts :: [[B.ByteString]] -> String
+listToAddicts []  = ""
+listToAddicts bss =  "<table id=\"tright\">\n"
                   ++ "<tr>\n"
-                  ++ "<tr id=\"title\"><td colspan=\"2\">&#8212 Top " ++ title ++ " Addicts &#8212</td></tr>\n"
+                  ++ "<tr id=\"title\"><td colspan=\"2\">&#8212 Top 10 Addicts &#8212</td></tr>\n"
                   ++ "<th>Times Played</th>\n<th>Username</th>\n"
                   ++ "</tr>\n"
                   ++ rows bss

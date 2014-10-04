@@ -50,5 +50,5 @@ main = do
     print weekScore
 
  
-    display "All Time" "alltime.html" score -- Creates HTML page displaying top as a string
+    display userID "All Time" "alltime.html" score -- Creates HTML page displaying top as a string
 
