@@ -82,3 +82,8 @@ p {
     font-size: 12px;
     float: right;
 }
+
+hr {
+    width: 93%;
+    border: 1px solid gray;
+}
