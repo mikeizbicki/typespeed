@@ -1,5 +1,4 @@
 import qualified Data.ByteString.Char8 as B
-import           Math.Statistics
 import           System.Posix.User
 import           Data.Time.Clock.POSIX
 import           Calc
@@ -16,39 +15,21 @@ main = do
     let score = wordsLines contents -- Contains the 2d list of scores
 
     userID <- getLoginName
-    putStr userID
-    putStr " scores \n"
-    let you = filterGroup[userID] score
-    print you
 
-    putStr "\nDat's scores \n"
-    let dat = filterGroup ["dat"] score
-    print dat
-    
-    putStr "\nJon's scores \n"
-    let jon = filterGroup ["jon"] score
-    print jon
-	
-    putStr "\nTop 10: \n"
-    let top = top10 score
-    print top
-
-    putStr "\nAverage score: "
-    print $ mean $ getScore score
-
-    putStr "\nStandard deviation: "
-    print $ stddev $ getScore score
-    
-    putStr "\nTop 10 addicts: \n"
-    let addicts = top10Addicts score
-    print addicts
-
-    let week = 604800 -- length of a week in seconds
     curTime <- fmap round getPOSIXTime -- gets the current time as an integer
+    let week = 604800 -- length of a week in seconds
+    let month = 2627942 -- length of average month in seconds
+    let fall = 1412208000
+    let winter = 1420416000
+    let spring = 1427673600
+    let quarter = curTime - fall -- Change me for next quarter!
     let weekScore = filterTime week curTime score
-    putStr "\nScores of the week: \n"
-    print weekScore
-
+    let monthScore = filterTime month curTime score
+    let quarterScore = filterTime quarter curTime score
  
-    display userID "All Time" "alltime.html" score -- Creates HTML page displaying top as a string
+    -- Generates the HTML pages
+    display userID "All Time" "alltime.html" score
+    display userID "This Quarter" "quarter.html" quarterScore
+    display userID "This Month" "month.html" monthScore
+    display userID "This Week" "week.html" weekScore
 

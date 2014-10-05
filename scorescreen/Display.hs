@@ -1,11 +1,5 @@
 module Display where
 
-{-
-    Fall 2014:   1412208000
-    Winter 2015: 1420416000
-    Spring 2015: 1427673600
--}
-
 import           Data.List
 import qualified Data.ByteString.Char8 as B
 import           Math.Statistics
@@ -13,7 +7,8 @@ import           Calc
 import           System.Directory
 import           System.FilePath.Posix
 
--- prints html to specified file
+
+-- Prints html to specified file
 display :: String -> String -> String -> [[B.ByteString]] -> IO ()
 display userID title fileLoc bss = do
        groupList' <- getDirectoryContents "groups"
@@ -28,6 +23,7 @@ display userID title fileLoc bss = do
                 you = filterGroup[userID] bss
 
        
+-- Generates header section for html page
 htmlPage :: String -> String
 htmlPage title =    "<!DOCTYPE html>\n"
                  ++ "<html>\n"
@@ -40,10 +36,10 @@ htmlPage title =    "<!DOCTYPE html>\n"
                  ++ "<div id=\"header\">\n"
                  ++ "<div id=\"navbar\">\n"
                  ++ "<ul>\n"
-                 ++ "<li><a href=\"alltime.html\">All Time</a></li>\n"          -- need to create function to fill in
-                 ++ "<li><a href=\"https://www.google.com/\">This Quarter</a></li>\n"           -- however many headings there are
-                 ++ "<li><a href=\"https://www.google.com/\">This Month</a></li>\n"
-                 ++ "<li><a href=\"https://www.google.com/\">This Week</a></li>\n"
+                 ++ "<li><a href=\"alltime.html\">All Time</a></li>\n"          
+                 ++ "<li><a href=\"quarter.html\">This Quarter</a></li>\n"     
+                 ++ "<li><a href=\"month.html\">This Month</a></li>\n"
+                 ++ "<li><a href=\"week.html\">This Week</a></li>\n"
                  ++ "</ul>\n"
                  ++ "</div>\n"
                  ++ "</div>\n"
@@ -52,6 +48,7 @@ htmlPage title =    "<!DOCTYPE html>\n"
                  ++ "<center><img src=\"./img/typespeedlogo.png\"/></center>\n"
                  ++ "<br>\n"
         where forkMe = "<a href=\"https://github.com/mikeizbicki/typespeed\"><img style=\"position: absolute; top: 0; right: 0; border: 0;\" src=\"https://camo.githubusercontent.com/52760788cde945287fbb584134c4cbc2bc36f904/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f77686974655f6666666666662e706e67\" alt=\"Fork me on GitHub\" data-canonical-src=\"https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png\"></a>\n"
+
 
 -- A very nasty function - Good Luck!
 displayGroups :: [String] -> [[String]] -> [[B.ByteString]] -> String
@@ -65,7 +62,7 @@ displayGroups (x:xs)(g:gs) bss = file (takeFileName x) top10_gss top10Addicts_gs
           dev = show $ stddev $ getScore gss
                   
 
--- creates html string      
+-- Creates each section of page
 file :: String -> String -> String -> String -> String -> String
 file title top addicts avg dev =    "<hr />\n"
                                  ++ "<h2>" ++ title ++ "</h2>\n"
@@ -78,10 +75,9 @@ file title top addicts avg dev =    "<hr />\n"
                                  ++ "<br>\n"
                                  ++ "<strong>Standard deviation: " ++ dev ++ "</strong>\n"
                                  ++ "<br><br>\n"
-                                 
 
 
--- converts scores into html table format for all stats
+-- Converts scores into html table format for all stats
 listToTable :: [[B.ByteString]] -> String
 listToTable bss =    "<table id=\"tleft\">\n"
                   ++ "<tr>\n"
@@ -102,7 +98,7 @@ listToTable bss =    "<table id=\"tleft\">\n"
                                ++ entries bs''
 
 
--- converts scores into html table format for addicts
+-- Converts scores into html table format for addicts
 listToAddicts :: [[B.ByteString]] -> String
 listToAddicts []  = ""
 listToAddicts bss =  "<table id=\"tright\">\n"
@@ -124,7 +120,7 @@ listToAddicts bss =  "<table id=\"tright\">\n"
                                ++ entries bs''
 
 
--- removes unwanted data from scores, leaving score, total count, enter offset,
+-- Removes unwanted data from scores. Leaving score, total count, enter offset,
 -- name, and duration
 removeJunk :: [[B.ByteString]] -> [[B.ByteString]]
 removeJunk [] = []
