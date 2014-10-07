@@ -61,8 +61,8 @@ li, a:hover {
 #header {
     position: relative;
     top: -8px;
-    margin-left: 0px;
-    margin-right: 0px;
+    margin: 0 auto;
+    width: 600px;
 }
 
 
