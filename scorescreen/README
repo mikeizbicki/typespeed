@@ -1,0 +1,5 @@
+The scorescreen folder contains the haskell files used to generate the html pages that show top user scores.
+
+Calc.hs--contains functions that transform/perform calculations on data taken from /usr/local/var/games/typespeed.score
+Display.hs--contains functions to create html code and files
+main.hs--physically creates html pages that display scores.
