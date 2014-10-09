@@ -3,6 +3,8 @@ import           System.Posix.User
 import           Data.Time.Clock.POSIX
 import           Calc
 import           Display
+import           System.Directory
+import           System.Cmd
 
 
 
@@ -27,9 +29,26 @@ main = do
     let monthScore = filterTime month curTime score
     let quarterScore = filterTime quarter curTime score
  
-    -- Generates the HTML pages
-    display userID "All Time" "alltime.html" score
-    display userID "This Quarter" "quarter.html" quarterScore
-    display userID "This Month" "month.html" monthScore
-    display userID "This Week" "week.html" weekScore
 
+    -- Creates .typespeed directory in home
+    home <- getHomeDirectory
+    createDirectoryIfMissing False $ home ++ "/.typespeed" 
+    createDirectoryIfMissing False $ home ++ "/.typespeed/img" 
+
+
+    -- Moves files to .typespeed directory
+    copyFile "stylesheet.css" $ home ++ "/.typespeed/stylesheet.css" -- moves css file
+    copyFile "img/binding_dark.png" $ home ++ "/.typespeed/img/binding_dark.png"
+    copyFile "img/Moder DOS 437.ttf" $ home ++ "/.typespeed/img/Moder DOS 437.ttf" 
+    copyFile "img/typespeedlogo.png" $ home ++ "/.typespeed/img/typespeedlogo.png"
+
+
+    -- Generates the HTML pages
+    display userID "All Time" (home ++ "/.typespeed/alltime.html") score
+    display userID "This Quarter" (home ++ "/.typespeed/quarter.html") quarterScore
+    display userID "This Month" (home ++ "/.typespeed/month.html") monthScore
+    display userID "This Week" (home ++ "/.typespeed/week.html") weekScore
+
+
+    -- Opens generated page in firefox
+    system $ "firefox " ++ home ++ "/.typespeed/alltime.html"
