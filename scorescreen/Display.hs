@@ -11,7 +11,8 @@ import           System.FilePath.Posix
 -- Prints html to specified file
 display :: String -> String -> String -> [[B.ByteString]] -> IO ()
 display userID title fileLoc bss = do
-       groupList' <- getDirectoryContents "groups"
+       home <- getHomeDirectory
+       groupList' <- getDirectoryContents $ home ++ "/.typespeed/groups"
        let groupList = sort $ filter (\x -> if head x == '.' then False else True) groupList' -- removes '.' and '..' directories
        names <- getNames groupList
        writeFile fileLoc $ (htmlPage title) ++ (file "Your Scores" (listToTable $ removeJunk $ top10 you) "" (show $ mean $ getScore you) (show $ stddev $ getScore you)) ++ (file "All Scores" (listToTable $ removeJunk $ top10 bss) (listToAddicts $ top10Addicts bss) (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "<br><br><p>Web Display By: <a href=\"https://github.com/jduga002\">Jonathan Dugan</a> & <a href=\"https://github.com/cheripai/\">Dat Do</a><p>\n" ++ "</body>\n" ++ "</html>\n"

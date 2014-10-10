@@ -30,18 +30,7 @@ main = do
     let quarterScore = filterTime quarter curTime score
  
 
-    -- Creates .typespeed directory in home
     home <- getHomeDirectory
-    createDirectoryIfMissing False $ home ++ "/.typespeed" 
-    createDirectoryIfMissing False $ home ++ "/.typespeed/img" 
-
-
-    -- Moves files to .typespeed directory
-    copyFile "stylesheet.css" $ home ++ "/.typespeed/stylesheet.css" -- moves css file
-    copyFile "img/binding_dark.png" $ home ++ "/.typespeed/img/binding_dark.png"
-    copyFile "img/Moder DOS 437.ttf" $ home ++ "/.typespeed/img/Moder DOS 437.ttf" 
-    copyFile "img/typespeedlogo.png" $ home ++ "/.typespeed/img/typespeedlogo.png"
-
 
     -- Generates the HTML pages
     display userID "All Time" (home ++ "/.typespeed/alltime.html") score
