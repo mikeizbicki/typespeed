@@ -1,0 +1,6 @@
+#!/bin/bash
+
+mkdir -p "$HOME/.typespeed"
+cp -r scorescreen/img "$HOME/.typespeed"
+cp -r scorescreen/groups "$HOME/.typespeed"
+cp scorescreen/stylesheet.css "$HOME/.typespeed/stylesheet.css"

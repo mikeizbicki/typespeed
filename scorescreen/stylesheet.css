@@ -1,0 +1,89 @@
+@font-face {
+  font-family: 'Moder DOS 437';
+  src: url('./img/Moder DOS 437.ttf');
+}
+
+table, th, td {
+    border: 2px solid gray;
+    padding: 10px;
+}
+
+
+table {
+    border-collapse: collapse;
+    text-align: center;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+
+body {
+    background-color: black;
+    background-image: url('./img/binding_dark.png');
+    background-repeat: repeat;
+    color: white;
+    text-align: center;
+    font-family: 'Moder DOS 437', helvetica, monospace; 
+    font-size: 18px;
+}
+
+
+ul {
+    list-style-type: none;
+    margin: -6px;
+}
+
+
+li, a {
+    display: inline;
+    color: white;
+    padding: 2px;
+    background-color: none;
+    text-decoration: none;
+}
+
+li, a:hover {
+    color: #909090;
+}
+
+#navbar {
+    
+    padding-top: 10px;
+    margin-left:-35px;
+    background-color: none;
+    height: 25px;
+}
+
+
+#header {
+    position: relative;
+    top: -8px;
+    margin: 0 auto;
+    width: 600px;
+}
+
+
+#tright, #tleft {
+    position: relative;
+    display: inline-block;
+    border: none;
+}
+
+
+#title {
+    font-weight: bold;
+}
+
+
+p {
+    font-size: 12px;
+    float: right;
+}
+
+hr {
+    width: 93%;
+    border: 1px solid gray;
+}
