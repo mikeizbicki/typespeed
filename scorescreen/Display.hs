@@ -18,7 +18,8 @@ display userID title fileLoc bss = do
        writeFile fileLoc $ (htmlPage title) ++ (file "Your Scores" (listToTable $ removeJunk $ top10 you) "" (show $ mean $ getScore you) (show $ stddev $ getScore you)) ++ (file "All Scores" (listToTable $ removeJunk $ top10 bss) (listToAddicts $ top10Addicts bss) (show $ mean $ getScore bss) (show $ stddev $ getScore bss)) ++ (displayGroups groupList names bss) ++ "<br><br><p>Web Display By: <a href=\"https://github.com/jduga002\">Jonathan Dugan</a> & <a href=\"https://github.com/cheripai/\">Dat Do</a><p>\n" ++ "</body>\n" ++ "</html>\n"
           where getNames [] = return []
                 getNames (x:xs) = do
-                         contents <- fmap lines $ readFile $ "groups/" ++ x
+                         home <- getHomeDirectory
+                         contents <- fmap lines $ readFile $ home ++ "/.typespeed/groups/" ++ x
                          restOfContents <- getNames xs
                          return $ contents:restOfContents
                 you = filterGroup[userID] bss
