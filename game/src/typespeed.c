@@ -916,6 +916,7 @@ play(void)
 	    && rules.hightype) {
 		addscore(usedwordfile, &now);
 		loadscores(usedwordfile);
+                execl("/usr/local/bin/Scorescreen", (char*)0);
 	}
 	free(usedwordfile);
 	usedwordfile = NULL;
